@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.easyweb.dao.UserDao">
+    <resultMap type="UserModel" id="UserResult">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+    <insert id="InsertByUser" >
+        INSERT INTO user(username,password) VALUE(#{username},#{password});
+    </insert>
+    <delete id="DeleteByName">
+        DELETE FROM user WHERE username = #{username};
+    </delete>
+    <update id="UpdateByName">
+        UPDATE user SET password = #{password}; WHERE username = #{username};
+    </update>
+    <select id="SelectByName" resultMap="UserResult">
+        SELECT * FROM user WHERE username = #{username};
+    </select>
+</mapper>
